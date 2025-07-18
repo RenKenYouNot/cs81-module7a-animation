@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading Animation Simulator</title>
+</head>
+<body style="font-family: monospace; text-align: center; padding-top: 100px; background-color: #f4f4f4;">
+
+  <div id="loader" style="font-size: 2rem; margin-bottom: 20px;">Loading...</div>
+  <div id="status">Please wait</div>
+
+  <script>
+    // This function runs the "loader" as the status of the page continuously
+    function runLoadingAnimation() {
+        // Finds the HTML element where the loading animation will appear.
+      const loader = document.getElementById("loader");
+        // Finds the HTML element where the status message ("Please wait") will appear.
+      const status = document.getElementById("status");
+    
+    // This displays the animation frame by frame
+      const frames = ["⏳", "⌛", ".", "..", "..."];
+      let index = 0;
+      let cycleCount = 0;
+      // This is the max number of times the animation will cycle through
+      const maxCycles = 10;
+
+    /*This part makes the loading animation run every 500 milliseconds.
+      It also stops the animation and shows "Done!" when it's finished cycling through.
+      */
+      const interval = setInterval(() => {
+        loader.textContent = frames[index % frames.length];
+        index++;
+        // If the cycle hasn't run its course, the loading animation will continue to repeat
+        if (index % frames.length === 0) {
+          cycleCount++;
+        }
+        // If the loadingAnimaiton cycle is completed, the page will load into the done screen
+        if (cycleCount >= maxCycles) {
+          clearInterval(interval);
+          loader.textContent = "✅";
+          status.textContent = "Done!";
+        }
+        // This sets the time interval to every 500 milliseconds
+      }, 500);
+    }
+
+    // - Creative Idea Comment – 
+        /* Instead of just loading in the check mark on the done screen, it would be interesting
+        to add a little animation, like an arrow clicking the loading screen, and the animation
+        turning into the check mark
+        */
+
+    // Start the loading animation when the page loads.
+    runLoadingAnimation();
+  </script>
+
+</body>
+</html>
