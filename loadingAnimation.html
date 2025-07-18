@@ -53,6 +53,22 @@
 
     // Start the loading animation when the page loads.
     runLoadingAnimation();
+
+    // - New Function
+    // This function reloads the page a few seconds after the "Done!" message appears.
+function autoRefreshPageOnDone() {
+  // Use location.reload() to refresh the page.
+  // The delay here gives users a moment to see the "Done!" message.
+  setTimeout(() => {
+    location.reload(); // This command reloads the current page
+  }, 3000); // Wait 3 seconds (3000ms) after "Done!" appears before refreshing
+}
+
+// Call this function after a safe delay to ensure the main animation has finished
+// and the "✅ Done!" text is visible.
+// 27000ms (27 seconds) is the expected end time.
+setTimeout(autoRefreshPageOnDone, 27000);
+
   </script>
 
 </body>
